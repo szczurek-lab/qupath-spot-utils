@@ -27,3 +27,24 @@ Scale factor file:
 3) In the Script Editor window, click *File -> Open...* and choose the *extract_annotated_spots.groovy* file
 4) Navigate to the bottom of the file and fill in the proper file paths for SPOT_COORDINATES_FILE_PATH, SCALE_FACTOR_FILE_PATH and OUTPUT_FILE_PATH
 5) Click *Run -> Run* in the Script Editor window
+
+### *cell_detection*
+
+This script counts the cells for each provided spot coordinate.
+
+**Input format:**
+Spot coordinates file:
+```
+0x0,947,1161
+0x1,1099,1248
+...
+10x10,1101,2295
+10x11,950,2383
+```
+
+**Usage:**
+1) Load a tissue slide in QuPath
+2) Click *Automate -> Show script editor* in QuPath's menu
+3) In the Script Editor window, click *File -> Open...* and choose the *cell_detection.groovy* file
+4) Replace PATH_TO_COORDINATES_FILE with the path to the corresponding spot coordinates file
+5) Click *Run -> Run* in the Script Editor window
