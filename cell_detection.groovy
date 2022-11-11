@@ -1,5 +1,7 @@
 import qupath.lib.objects.PathObjects
 import qupath.lib.roi.ROIs
+import groovy.transform.Immutable
+import com.google.gson.GsonBuilder
 
 setImageType('BRIGHTFIELD_H_E')
 setColorDeconvolutionStains(
@@ -15,6 +17,7 @@ setColorDeconvolutionStains(
 )
 
 String COORDINATES_FILE = 'PATH_TO_COORDINATES_FILE'
+String OUTPUT_FILE = 'PATH_TO_OUTPUT_FILE'
 double SPOT_WIDTH = 89.47
 double SPOT_HEIGHT = 89.47
 
@@ -52,9 +55,17 @@ coordinates = new File(COORDINATES_FILE)
             spotY: splitLine[2].toDouble()
         )
     }
+    
+def gson = new GsonBuilder().create()
+def configJson = gson.toJson(new WatershedCellDetectionConfig())
+
+def resultsFile = new File(OUTPUT_FILE)
+resultsFile.write('spotId,cellCount\n')
+
+print 'Processing started...'
 
 for (def item : coordinates) {
-    print spotId
+    print item.spotId
     
     def roi = ROIs.createEllipseROI(
         item.spotY, 
@@ -70,10 +81,14 @@ for (def item : coordinates) {
     
     runPlugin(
         'qupath.imagej.detect.cells.WatershedCellDetection', 
-        JsonOutput.toJson(new WatershedCellDetectionConfig())
+        configJson
     )
+    
+    resultsFile.append("${item.spotId},${annotation.getChildObjects().size()}\n")
 
     clearAnnotations()
 }
 
 clearAnnotations()
+
+print 'Processing finished.'

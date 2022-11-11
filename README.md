@@ -46,5 +46,5 @@ Spot coordinates file:
 1) Load a tissue slide in QuPath
 2) Click *Automate -> Show script editor* in QuPath's menu
 3) In the Script Editor window, click *File -> Open...* and choose the *cell_detection.groovy* file
-4) Replace PATH_TO_COORDINATES_FILE with the path to the corresponding spot coordinates file
+4) Replace PATH_TO_COORDINATES_FILE with the path to the corresponding spot coordinates file and PATH_TO_OUTPUT_FILE with your desired out output file path
 5) Click *Run -> Run* in the Script Editor window
