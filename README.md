@@ -1,6 +1,11 @@
 # qupath-spot-utils
 Scripts for processing microarray spots in QuPath
 
+### Citation
+If you use this package in your work, please cite:
+
+Geras, A., Darvish Shafighi, S., Domżał, K. et al. Celloscope: a probabilistic model for marker-gene-driven cell type deconvolution in spatial transcriptomics data. Genome Biol 24, 120 (2023). [https://doi.org/10.1186/s13059-023-02951-8](https://doi.org/10.1186/s13059-023-02951-8)
+
 ### *extract_annotated_spots*
 
 This script finds spots that intersect annotated regions within a slide and saves their positions + annotated labels in a CSV file.
